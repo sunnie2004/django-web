@@ -1,0 +1,94 @@
+{%  extends 'base.html' %}
+{% load static %}
+{% block title %}
+Products | Diakonia
+{% endblock %}
+
+
+{% block add %}
+<li id="menu-item-22" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-22">
+    <a href="/cart">ShoppingCart</a>
+</li>
+{% endblock%}
+
+{% block content %}
+ <img width="1080" height="368" src="http://diakoniaretreatcenter.org/wp-content/uploads/2016/02/Our-Story-Hero-1080x368.jpg" class="attachment-diakonia-thumbnail-no-sidebar size-diakonia-thumbnail-no-sidebar wp-post-image" alt="" srcset="http://diakoniaretreatcenter.org/wp-content/uploads/2016/02/Our-Story-Hero.jpg 1080w, http://diakoniaretreatcenter.org/wp-content/uploads/2016/02/Our-Story-Hero-300x102.jpg 300w, http://diakoniaretreatcenter.org/wp-content/uploads/2016/02/Our-Story-Hero-768x262.jpg 768w, http://diakoniaretreatcenter.org/wp-content/uploads/2016/02/Our-Story-Hero-1024x349.jpg 1024w" sizes="(max-width: 1080px) 100vw, 1080px"></div>
+
+{% for item in products %}
+<!--<form  method="post"  style="margin-top:20px;width:100%;float:left;" id="productform{{item.id}}">-->
+    {% csrf_token %}
+<div class="container" style="margin-top: 6%;float:left;">
+     <div class="image" style="width:30%;height:300px;float:left;">
+       <img src="{{item.image.url}}" class="..." alt="products" style="width:100%;height:300px;">
+     </div>
+
+     <div class="information" style="width:70%; color:DarkRed;margin-left:350px;line-height:150%">
+         <label  for="product_name" style="font-size:160%;"><b>Name:</b></label>
+            <a name="name" style="font-size:120%; color:black" >{{item.name}}</a><br>
+         <label  style="font-size:160%;"><b>Description:</b></label>
+            <a name="description" style="font-size:120%; color:black">{{item.description}}</a><br>
+         <label style="font-size:160%;"><b>Price:$</b></label>
+           <a name="price" style="font-size:120%; color:black"> {{item.price}}</a><br>
+         <label style="font-size:160%;" ><b>Stock:</b></label>
+            <a name="stock" style="font-size:120%; color:black"> {{item.stock}}</a><br>
+
+          <!--function works 6/21/2019-->
+          <label style="font-size:160%;" ><b>Quantity:</b></label>
+            <input type="number" name="quantity" id="quantity{{item.id}}"  size="5"  value="" autocomplete="off" step="1" min="0" max="{{item.stock}}"/></br>
+
+         <input type="submit" value="Add to Cart" id="add_cart" item_id="{{item.id}}" stock="{{item.stock}}"><br>
+
+       <!--<button type="button" class="btn btn-secondary" id="add_cart" href="">Add to Cart</button>-->
+    </div>
+</div>
+<!--</form>-->
+{% endfor %}
+
+<script src="/static/js/jquery-3.4.1.js"></script>
+<script language="javascript">
+$(document).ready(function(){
+    $('#add_cart[item_id]').bind('click',function(){
+        var item_id;
+        item_id = $(this).attr("item_id");
+        <!--alert(item_id);-->
+        var stock = $(this).attr("stock");
+        <!--alert(stock);-->
+
+        <!--var quantity = document.getElementById("quantity"+item_id).value;-->
+
+        var quantity = $("#"+"quantity"+item_id).val();
+        <!--alert(quantity);-->
+
+    <!--compare stock with quantity to inform buyer-->
+        if (parseInt(quantity) == 0 || quantity == '') {
+            alert("please choose the valid quantity");
+        } else if (parseInt(quantity) > parseInt(stock)){
+            alert("over stock!please change the quantity below the stock!");
+            <!--showMessage('over stock!')-->
+        } else {
+            csrf = $('input[name="csrfmiddlewaretoken"]').val();
+
+            data = {item_id:item_id ,quantity:quantity,csrfmiddlewaretoken:csrf};
+
+                <!--function works 6/21/2019-->
+                $.post('/cart/add', data,function(quantity,item_id){
+                    alert(quantity);
+                    alert(item_id);
+                });
+
+
+            <!--ajax problem need to figure out????-->
+            <!--$.ajax({-->
+                <!--url:'/cart/add',-->
+                <!--type:"POST",-->
+                <!--&lt;!&ndash;dataType:'json',&ndash;&gt;-->
+                <!--data:data,-->
+                <!--success:function(quantity,item_name,message){-->
+                    <!--alert("success");-->
+                <!--}),-->
+                <!--});-->
+        }
+        });
+    });
+</script>
+{% endblock %}
