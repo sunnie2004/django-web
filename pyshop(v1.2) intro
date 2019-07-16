@@ -1,0 +1,16 @@
+add:
+payment app
+pay by paypal ipn model
+paymentdone,paymentprocess,paymentcancel page
+use ngrok to test paypal signal
+add tax on the pay
+
+
+more functions to do:
+1. admin custom order view
+2. send email to buyer
+3.pdf output order information
+4. generate shipping label
+
+problem:
+shipping fee? paypal setting can not work out.
