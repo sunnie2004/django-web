@@ -1,0 +1,12 @@
+{%  extends 'base.html' %}
+{% block title %}Pay using PayPal{% endblock %}
+
+{% block content %}
+<div class="paypal"  style="height:100px;font-size:160%;float:left;color:DarkRed;">
+<h1>Pay using PayPal!</h1>
+</div>
+<!-- writes out the form tag automatically -->
+{{ form.render }}
+{% endblock %}
+
+
