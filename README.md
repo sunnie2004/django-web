@@ -42,7 +42,13 @@ V1.3
 
 Page Layout:
 ===
-		
+![product](https://github.com/sunnie2004/django-web/blob/master/products.jpg)
+![shopping-cart](https://github.com/sunnie2004/django-web/blob/master/cart.jpg)
+![orderpage](https://github.com/sunnie2004/django-web/blob/master/order.jpg)
+![orderadmin-change](https://github.com/sunnie2004/django-web/blob/master/orderadminchange.jpg)
+![orderadmin-add action](https://github.com/sunnie2004/django-web/blob/master/orderadmin.jpg)
+![orderadmin-print](https://github.com/sunnie2004/django-web/blob/master/printorder.jpg)
+![ordercustomize](https://github.com/sunnie2004/django-web/blob/master/ordercustomize.png)
 Envrionment:
 ====
 | tool  | version |function|
