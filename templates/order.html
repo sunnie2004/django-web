@@ -1,0 +1,211 @@
+{%  extends 'base.html' %}
+{% block title%}
+Our Story | Diakonia
+{% endblock%}
+
+
+{% block add %}
+<li id="menu-item-22" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-22">
+    <a href="/product">Products</a>
+</li>
+{% endblock%}
+
+{% block content %}
+{% if Emptycart %}
+<div class="total_0"  style="height:100px;font-size:160%;float:left;color:DarkRed;">
+  My cart is empty!
+  <a href="/product"><input type="submit" class="product" value="Continue Shopping" name="continue_shopping"></a>
+</div>
+{% else %}
+<div class="total_count">My order {{total_quantity}} items</div>
+<table class="table" id="orderlist">
+  <thead>
+    <tr>
+      <th>No.</th>
+      <th scope="col">Product</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Subtotal</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for item in cart_products %}
+    <tr>
+      <td> </td>
+      <td>{{item.name}}</td>
+      <td>${{item.price}}</td>
+      <td>{{item.quantity}}</td>
+      <td>${{item.subtotal}}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+ <div class="pay" style="width:40%;line-height:120%;float:right">
+      <label for="total_price"  style="font-size:150%;">total(without shipping fee)： ${{total_price}}</label><br>
+      <label for="taotal_quantity"  style="font-size:150%;">total_quantity: {{total_quantity}} items</label><br>
+      <label for="taotal_weight"  style="font-size:150%;">total_weight: {{total_weight}} oz</label><br>
+ </div>
+
+ <!--<form id="orderinfomation" method="post" action="/placeorder">-->
+  <!--<div class="form-row">-->
+    <!--<div class="form-group col-md-6">-->
+    <!--<label for="inputName">Contact Name</label>-->
+    <!--<input type="text" class="form-control" id="inputName" placeholder="Name">-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div class="form-row">-->
+    <!--<div class="form-group col-md-6">-->
+      <!--<label for="inputEmail4">Email</label>-->
+      <!--<input type="email" class="form-control" id="inputEmail4" placeholder="Email">-->
+    <!--</div>-->
+    <!--<div class="form-group col-md-6">-->
+      <!--<label for="inputPhone">Phone Number</label>-->
+      <!--<input type="text" class="form-control" id="inputPhone" placeholder="Phone Number">-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div class="form-group">-->
+    <!--<label for="inputAddress">Address</label>-->
+    <!--<input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">-->
+  <!--</div>-->
+  <!--<div class="form-group">-->
+    <!--<label for="inputAddress2">Address 2</label>-->
+    <!--<input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">-->
+  <!--</div>-->
+  <!--<div class="form-row">-->
+    <!--<div class="form-group col-md-6">-->
+      <!--<label for="inputCity">City</label>-->
+      <!--<input type="text" class="form-control" id="inputCity">-->
+    <!--</div>-->
+    <!--<div class="form-group col-md-4">-->
+      <!--<label for="inputState">State</label>-->
+      <!--<select id="inputState" class="form-control">-->
+        <!--<option selected>Choose...</option>-->
+        <!--<option value="AL">Alabama</option>-->
+        <!--<option value="AK">Alaska</option>-->
+        <!--<option value="AZ">Arizona</option>-->
+        <!--<option value="AR">Arkansas</option>-->
+        <!--<option value="CA">California</option>-->
+        <!--<option value="CO">Colorado</option>-->
+        <!--<option value="CT">Connecticut</option>-->
+        <!--<option value="DE">Delaware</option>-->
+        <!--<option value="DC">District Of Columbia</option>-->
+        <!--<option value="FL">Florida</option>-->
+        <!--<option value="GA">Georgia</option>-->
+        <!--<option value="HI">Hawaii</option>-->
+        <!--<option value="ID">Idaho</option>-->
+        <!--<option value="IL">Illinois</option>-->
+        <!--<option value="IN">Indiana</option>-->
+        <!--<option value="IA">Iowa</option>-->
+        <!--<option value="KS">Kansas</option>-->
+        <!--<option value="KY">Kentucky</option>-->
+        <!--<option value="LA">Louisiana</option>-->
+        <!--<option value="ME">Maine</option>-->
+        <!--<option value="MD">Maryland</option>-->
+        <!--<option value="MA">Massachusetts</option>-->
+        <!--<option value="MI">Michigan</option>-->
+        <!--<option value="MN">Minnesota</option>-->
+        <!--<option value="MS">Mississippi</option>-->
+        <!--<option value="MO">Missouri</option>-->
+        <!--<option value="MT">Montana</option>-->
+        <!--<option value="NE">Nebraska</option>-->
+        <!--<option value="NV">Nevada</option>-->
+        <!--<option value="NH">New Hampshire</option>-->
+        <!--<option value="NJ">New Jersey</option>-->
+        <!--<option value="NM">New Mexico</option>-->
+        <!--<option value="NY">New York</option>-->
+        <!--<option value="NC">North Carolina</option>-->
+        <!--<option value="ND">North Dakota</option>-->
+        <!--<option value="OH">Ohio</option>-->
+        <!--<option value="OK">Oklahoma</option>-->
+        <!--<option value="OR">Oregon</option>-->
+        <!--<option value="PA">Pennsylvania</option>-->
+        <!--<option value="RI">Rhode Island</option>-->
+        <!--<option value="SC">South Carolina</option>-->
+        <!--<option value="SD">South Dakota</option>-->
+        <!--<option value="TN">Tennessee</option>-->
+        <!--<option value="TX">Texas</option>-->
+        <!--<option value="UT">Utah</option>-->
+        <!--<option value="VT">Vermont</option>-->
+        <!--<option value="VA">Virginia</option>-->
+        <!--<option value="WA">Washington</option>-->
+        <!--<option value="WV">West Virginia</option>-->
+        <!--<option value="WI">Wisconsin</option>-->
+        <!--<option value="WY">Wyoming</option>-->
+      <!--</select>-->
+    <!--</div>-->
+    <!--<div class="form-group col-md-2">-->
+      <!--<label for="inputZip">Zip</label>-->
+      <!--<input type="text" class="form-control" id="inputZip">-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div class="form-group">-->
+    <!--<div class="form-pay">-->
+      <!--<input class="form-check-input" type="checkbox" id="gridCheck">-->
+      <!--<label class="form-check-label" for="gridCheck">-->
+        <!--Check me out-->
+      <!--</label>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<button type="submit" class="btn btn-primary" >Place Order</button>-->
+<!--</form>-->
+    <label for="Shipping_Information"  style="font-size:160%;color:DarkRed;">Shipping_Information</label><br>
+    <form action="." method="post">
+        {% csrf_token %}
+        {{ form.as_p }}<br>
+      <!--{{ form.non_field_errors }}-->
+        <!--<div class="fieldWrapper">-->
+            <!--{{ form.subject.errors }}-->
+            <!--<label for="{{ form.subject.id_for_label }}">User:</label>-->
+            <!--{{ form.user }}-->
+        <!--</div>-->
+        <!--<div class="fieldWrapper">-->
+            <!--{{ form.message.errors }}-->
+            <!--<label for="{{ form.message.id_for_label }}">Email:</label>-->
+            <!--{{ form.email }}-->
+        <!--</div>-->
+        <!--<div class="fieldWrapper">-->
+            <!--{{ form.sender.errors }}-->
+            <!--<label for="{{ form.sender.id_for_label }}">Shipping address:</label>-->
+            <!--{{ form.addr }}-->
+        <!--</div>-->
+        <!--<div class="fieldWrapper">-->
+            <!--{{ form.cc_myself.errors }}-->
+            <!--<label for="{{ form.cc_myself.id_for_label }}">City</label>-->
+            <!--{{ form.city }}-->
+        <!--</div>-->
+
+      <!--7/8/2019 new method to get total_quantity& total_price>-->
+      <!--<input type="hidden" name="total_quantity" value="{{ total_quantity }}">-->
+      <!--<input type="hidden" name="total_price" value="{{ total_price }}">-->
+
+
+      <input type="submit" class="btn btn-primary" value="Submit order">
+    </form>
+
+
+
+<script  src="/static/js/jquery-3.4.1.js"></script>
+<script language="javascript">
+<!--need to fix???-->
+<!--$(document).ready(function(){-->
+  <!--var len = document.getElementById("orderlist").row.length;-->
+  <!--alert(len);-->
+  <!--for(var i = 1;i<len;i++){-->
+      <!--$("#orderlist tr:eq(i) td:first-child").text(i);-->
+  <!--}-->
+<!--});-->
+
+<!--7/1/2019 add the serial number for the product table-->
+var addSerialNumber = function () {
+    var i = 1
+    $('table tr').each(function(index) {
+        $(this).find('td:nth-child(1)').html(index);
+    });
+};
+addSerialNumber();
+
+</script>
+
+{% endif %}
+{% endblock%}
